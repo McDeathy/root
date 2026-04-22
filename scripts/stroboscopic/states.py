@@ -13,7 +13,7 @@ from .operators import annihilation
 
 def coherent_state(alpha_abs: float, alpha_phase_deg: float, nmax: int):
     """|α⟩ = exp(-|α|²/2) Σ αⁿ/√n! |n⟩ — analytical recurrence."""
-    theta = _np.radians(float(alpha_phase_deg))
+    theta = _np.radians(float(alpha_phase_deg)+180)
     alpha = float(alpha_abs) * _np.exp(1j * theta)
     # Build on host, transfer once (JAX-safe; avoids in-place assignment).
     psi_host = _np.zeros(nmax, dtype=_np.complex128)
